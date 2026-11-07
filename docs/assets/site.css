@@ -134,6 +134,23 @@ html.js .screen-title { display: none; }
 .screen[hidden] { display: none; }
 html:not(.js) .screen[hidden] { display: grid; }
 
+/* ---- Sound: the EQ screen beside the list of what it does ---- */
+
+.sound {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--space-12);
+  align-items: start;
+}
+.sound-shot {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-md);
+  box-shadow: 0 0 0 1px var(--line), var(--shadow-art);
+  background: #111116;
+}
+
 /* ---- Install: one panel per platform ---- */
 
 .platforms {
@@ -245,6 +262,8 @@ html:not(.js) .spec { display: none; } /* without JavaScript the buttons go to t
   .sleeve { width: 240px; }
   .screen { grid-template-columns: minmax(0, 1fr); gap: var(--space-4); }
   .screen-text { max-width: var(--measure); }
+  .sound { grid-template-columns: minmax(0, 1fr); gap: var(--space-8); }
+  .sound-shot { max-width: 640px; }
 }
 @media (max-width: 760px) {
   .page { padding: var(--space-8) var(--space-4) 0; }
