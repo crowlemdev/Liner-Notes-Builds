@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Liner Notes</title>
+<meta name="description" content="Liner Notes, a music player that reads like a magazine. Download it for Mac or Android.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f5f5f7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#111116" media="(prefers-color-scheme: dark)">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Liner Notes">
+<meta property="og:description" content="A music player that reads like a magazine. For Mac and Android.">
+<meta property="og:url" content="https://crowlemai.github.io/Liner-Notes-Builds/">
+<meta property="og:image" content="https://crowlemai.github.io/Liner-Notes-Builds/assets/icon-512.png">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/icon-32.png">
+<link rel="icon" type="image/png" sizes="64x64" href="assets/icon-64.png">
+<link rel="apple-touch-icon" href="assets/icon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=Lato:ital,wght@0,400;0,700;0,900;1,400&amp;display=swap">
+<link rel="stylesheet" href="assets/liner-notes.css">
+<link rel="stylesheet" href="assets/site.css">
+<script>document.documentElement.classList.add("js");</script>
+<script src="assets/site.js" defer></script>
+</head>
+<body class="ln-root">
+
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <symbol id="icon-download" viewBox="0 0 24 24">
+    <path d="M4 12h15M14 7l5 5-5 5" transform="rotate(90 12 12)" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+</svg>
+
+<div class="page">
+<main>
+
+  <section class="hero" aria-labelledby="title">
+    <img class="sleeve" src="assets/icon-640.png" width="320" height="320" alt="The Liner Notes icon: six ink lines on warm paper">
+    <div class="hero-copy">
+      <p class="ln-eyebrow">Personal music player</p>
+      <h1 id="title" class="masthead">Liner Notes</h1>
+      <p class="lede">A music player that reads like a magazine. Album art on every page, your playlists kept as plain files, and the path from the file to your headphones told in words and numbers.</p>
+      <div class="hero-actions">
+        <a class="ln-btn ln-btn-primary" data-download="mac" href="https://github.com/crowlemai/Liner-Notes-Builds/releases">
+          <svg class="ln-icon" aria-hidden="true"><use href="#icon-download"/></svg>Download for Mac
+        </a>
+        <a class="ln-btn ln-btn-secondary" data-download="android" href="https://github.com/crowlemai/Liner-Notes-Builds/releases">
+          <svg class="ln-icon" aria-hidden="true"><use href="#icon-download"/></svg>Download for Android
+        </a>
+      </div>
+      <p class="meta">For Mac and Android. New builds arrive inside the app.</p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="install">
+    <header class="ln-section">
+      <div class="ln-section-text">
+        <h2 id="install" class="ln-section-title">Install</h2>
+      </div>
+      <a class="ln-link is-accent ln-section-action" href="https://github.com/crowlemai/Liner-Notes-Builds/releases">Every build ⟶</a>
+    </header>
+
+    <div class="platforms">
+      <article class="panel" data-platform="mac">
+        <p class="ln-eyebrow">For Mac</p>
+        <h3 class="panel-title">Liner Notes for Mac</h3>
+        <p class="meta">macOS 14 or later · Apple silicon</p>
+        <ol class="steps">
+          <li>Open the zip and drag Liner Notes into Applications.</li>
+          <li>Open it. macOS stops it the first time, as it does any app Apple has not checked.</li>
+          <li>In System Settings › Privacy &amp; Security, choose Open Anyway. From then on, updates install themselves.</li>
+        </ol>
+        <div class="panel-foot">
+          <a class="ln-btn ln-btn-secondary ln-btn-sm" data-download="mac" href="https://github.com/crowlemai/Liner-Notes-Builds/releases">
+            <svg class="ln-icon" aria-hidden="true"><use href="#icon-download"/></svg>Download zip
+          </a>
+          <p class="spec" data-spec="mac">Finding the newest build…</p>
+        </div>
+        <details class="checksum" data-sha="mac" hidden>
+          <summary>SHA-256</summary>
+          <code></code>
+        </details>
+      </article>
+
+      <article class="panel" data-platform="android">
+        <p class="ln-eyebrow">For Android</p>
+        <h3 class="panel-title">Liner Notes for Android</h3>
+        <p class="meta">Android 9 or later · phones and music players</p>
+        <ol class="steps">
+          <li>Download the APK on your phone or player.</li>
+          <li>Open it. If Android asks, let your browser install unknown apps, then choose Install.</li>
+          <li>From then on, new builds install from inside the app.</li>
+        </ol>
+        <div class="panel-foot">
+          <a class="ln-btn ln-btn-secondary ln-btn-sm" data-download="android" href="https://github.com/crowlemai/Liner-Notes-Builds/releases">
+            <svg class="ln-icon" aria-hidden="true"><use href="#icon-download"/></svg>Download APK
+          </a>
+          <p class="spec" data-spec="android">Finding the newest build…</p>
+        </div>
+        <details class="checksum" data-sha="android" hidden>
+          <summary>SHA-256</summary>
+          <code></code>
+        </details>
+      </article>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="inside">
+    <header class="ln-section">
+      <div class="ln-section-text">
+        <h2 id="inside" class="ln-section-title">In the sleeve</h2>
+      </div>
+    </header>
+
+    <div class="notes">
+      <article class="note">
+        <h3 class="note-title">The signal</h3>
+        <p>Every track states how it reaches you, in words and numbers. Bit-perfect over USB on Android, and with exclusive access on the Mac.</p>
+        <ul class="levels" aria-label="Signal quality levels, best to worst">
+          <li class="ln-quality ln-q-lossless"><span class="ln-quality-dot" aria-hidden="true"></span><span class="ln-quality-word">Lossless</span></li>
+          <li class="ln-quality ln-q-enhanced"><span class="ln-quality-dot" aria-hidden="true"></span><span class="ln-quality-word">Enhanced</span></li>
+          <li class="ln-quality ln-q-hq"><span class="ln-quality-dot" aria-hidden="true"></span><span class="ln-quality-word">High quality</span></li>
+          <li class="ln-quality ln-q-lq"><span class="ln-quality-dot" aria-hidden="true"></span><span class="ln-quality-word">Low quality</span></li>
+        </ul>
+      </article>
+      <article class="note">
+        <h3 class="note-title">The pages</h3>
+        <p>Albums, artists, Serendipity and Stats, set like print: serif names, generous margins and the art first.</p>
+      </article>
+      <article class="note">
+        <h3 class="note-title">The playlists</h3>
+        <p>Plain M3U files in a folder you choose, tagged by genre. Sync the folder, and your Mac and your player share them.</p>
+      </article>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <p class="meta">Liner Notes</p>
+  <a class="ln-link is-muted meta" href="https://github.com/crowlemai/Liner-Notes-Builds">Builds on GitHub ⟶</a>
+</footer>
+</div>
+
+</body>
+</html>
