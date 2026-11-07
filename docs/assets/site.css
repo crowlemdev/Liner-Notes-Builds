@@ -3,6 +3,8 @@
 :root {
   /* shadow-art as a filter, so it follows the icon's rounded shape */
   --sleeve-shadow: drop-shadow(0 1px 2px rgba(20, 20, 28, 0.10)) drop-shadow(0 12px 32px rgba(20, 20, 28, 0.14));
+  /* height of the screenshot stage */
+  --stage: 600px;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
@@ -40,16 +42,28 @@ p { margin: 0; }
   filter: var(--sleeve-shadow);
 }
 .hero-copy { display: grid; gap: var(--space-3); max-width: var(--measure); }
+
+/* The masthead of the apps' Annual card: the name over a strong rule */
 .masthead {
   margin: 0;
   font-family: var(--font-display);
-  font-size: 72px;
-  line-height: 72px;
-  font-weight: 700;
+  font-size: 80px;
+  line-height: 80px;
+  font-weight: 800;
   letter-spacing: -0.02em;
-  font-variation-settings: "opsz" 96;
   text-wrap: balance;
 }
+.masthead-line {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-2) var(--space-4);
+  padding-top: var(--space-3);
+  border-top: 2px solid var(--ink);
+  margin-bottom: var(--space-3);
+}
+.masthead-line .ln-eyebrow { color: var(--ink); }
+
 .lede { font-size: 19px; line-height: 30px; color: var(--ink); }
 .hero-actions { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-3); }
 .meta { font-size: 14px; line-height: 20px; color: var(--ink-muted); }
@@ -60,7 +74,68 @@ p { margin: 0; }
 .hero + .section { margin-top: var(--space-24); }
 .ln-section + * { margin-top: var(--space-8); }
 
-/* Install: one panel per platform */
+/* ---- In the sleeve: the apps' own page names switch the screenshot ---- */
+
+.screen-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-1) var(--space-6);
+  margin-top: var(--space-2);
+}
+.screen-tabs [role="tab"] {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 28px;
+  line-height: 44px;
+  letter-spacing: -0.015em;
+  color: var(--ink-muted);
+  border-radius: var(--radius-sm);
+  transition: color .2s ease;
+}
+.screen-tabs [role="tab"]:hover { color: var(--ink); }
+.screen-tabs [role="tab"][aria-selected="true"] { font-size: 44px; color: var(--ink); }
+.screen-tabs [role="tab"]:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
+
+.screens { display: grid; gap: var(--space-16); }
+.screen {
+  margin: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 300px) minmax(0, 1fr);
+  gap: var(--space-12);
+  align-items: start;
+}
+.screen-title {
+  margin: 0 0 var(--space-2);
+  font-family: var(--font-display);
+  font-size: 28px;
+  line-height: 34px;
+  font-weight: 800;
+  color: var(--ink);
+}
+.screen-text { font-size: 19px; line-height: 30px; color: var(--ink); }
+.screen img {
+  display: block;
+  width: min(100%, calc(var(--stage) * var(--r)));
+  height: auto;
+  border-radius: var(--radius-md);
+  box-shadow: 0 0 0 1px var(--line), var(--shadow-art);
+  background: #111116;
+}
+
+/* Without JavaScript every screen is shown, each with its own title */
+html:not(.js) .screen-tabs { display: none; }
+html.js .screen-title { display: none; }
+.screen[hidden] { display: none; }
+html:not(.js) .screen[hidden] { display: grid; }
+
+/* ---- Install: one panel per platform ---- */
+
 .platforms {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -77,9 +152,9 @@ p { margin: 0; }
 .panel-title {
   margin: 0;
   font-family: var(--font-display);
-  font-size: 20px;
-  line-height: 26px;
-  font-weight: 600;
+  font-size: 22px;
+  line-height: 28px;
+  font-weight: 700;
   color: var(--ink);
 }
 
@@ -146,30 +221,6 @@ html:not(.js) .spec { display: none; } /* without JavaScript the buttons go to t
   word-break: break-all;
 }
 
-/* In the sleeve: three short notes */
-.notes {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: var(--space-8) var(--space-12);
-}
-.note-title {
-  margin: 0 0 var(--space-2);
-  font-family: var(--font-display);
-  font-size: 20px;
-  line-height: 26px;
-  font-weight: 600;
-  color: var(--ink);
-}
-.note p { max-width: var(--measure); }
-.levels {
-  list-style: none;
-  margin: var(--space-4) 0 0;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2) var(--space-4);
-}
-
 /* Footer */
 .foot {
   display: flex;
@@ -184,21 +235,31 @@ html:not(.js) .spec { display: none; } /* without JavaScript the buttons go to t
 
 /* ---- Smaller screens ---- */
 
+@media (max-width: 1100px) {
+  :root { --stage: 520px; }
+  .screen { grid-template-columns: minmax(0, 240px) minmax(0, 1fr); gap: var(--space-8); }
+  .screen-text { font-size: 17px; line-height: 27px; }
+}
 @media (max-width: 960px) {
   .hero { grid-template-columns: 240px minmax(0, 1fr); gap: var(--space-8); }
   .sleeve { width: 240px; }
-  .notes { grid-template-columns: 1fr; gap: var(--space-8); }
+  .screen { grid-template-columns: minmax(0, 1fr); gap: var(--space-4); }
+  .screen-text { max-width: var(--measure); }
 }
 @media (max-width: 760px) {
   .page { padding: var(--space-8) var(--space-4) 0; }
   .hero { grid-template-columns: 1fr; gap: var(--space-6); }
   .sleeve { width: 144px; }
   .hero + .section { margin-top: var(--space-16); }
+  .screen img { width: 100%; }
   .platforms { grid-template-columns: 1fr; gap: var(--space-4); }
   .panel { padding: var(--space-4); }
 }
 @media (max-width: 600px) {
-  .masthead { font-size: 48px; line-height: 50px; }
+  .masthead { font-size: 56px; line-height: 58px; }
   .lede { font-size: 17px; line-height: 27px; }
   .hero-actions .ln-btn { flex: 1 1 100%; }
+  .screen-tabs { gap: 0 var(--space-4); }
+  .screen-tabs [role="tab"] { font-size: 20px; line-height: 36px; }
+  .screen-tabs [role="tab"][aria-selected="true"] { font-size: 30px; }
 }

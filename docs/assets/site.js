@@ -144,7 +144,44 @@
     });
   }
 
+  /* In the sleeve: the apps' page names switch the screenshot, as in the apps */
+  function setupScreens() {
+    var tabs = Array.prototype.slice.call(document.querySelectorAll('.screen-tabs [role="tab"]'));
+    if (!tabs.length) return;
+
+    function select(tab, focus) {
+      tabs.forEach(function (t) {
+        var on = t === tab;
+        t.setAttribute("aria-selected", on ? "true" : "false");
+        t.tabIndex = on ? 0 : -1;
+        var panel = document.getElementById(t.getAttribute("aria-controls"));
+        if (panel) panel.hidden = !on;
+      });
+      if (focus) tab.focus();
+    }
+
+    tabs.forEach(function (tab, i) {
+      tab.addEventListener("click", function () { select(tab, false); });
+      tab.addEventListener("keydown", function (e) {
+        var next = null;
+        if (e.key === "ArrowRight" || e.key === "ArrowDown") next = tabs[(i + 1) % tabs.length];
+        else if (e.key === "ArrowLeft" || e.key === "ArrowUp") next = tabs[(i - 1 + tabs.length) % tabs.length];
+        else if (e.key === "Home") next = tabs[0];
+        else if (e.key === "End") next = tabs[tabs.length - 1];
+        if (next) { e.preventDefault(); select(next, true); }
+      });
+    });
+
+    select(tabs.filter(function (t) { return t.getAttribute("aria-selected") === "true"; })[0] || tabs[0], false);
+
+    // Fetch the other screenshots once the page has loaded, so switching is instant
+    var warm = function () { each(".screen img", function (img) { img.loading = "eager"; }); };
+    if (document.readyState === "complete") warm();
+    else window.addEventListener("load", warm);
+  }
+
   function start() {
+    setupScreens();
     preferPlatform();
     var fallBack = function () { Object.keys(PLATFORMS).forEach(showFallback); };
     if (!window.fetch || !window.Promise) return fallBack();

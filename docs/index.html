@@ -18,7 +18,7 @@
 <link rel="apple-touch-icon" href="assets/icon-180.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=Lato:ital,wght@0,400;0,700;0,900;1,400&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400..800;1,6..72,400..800&amp;family=IBM+Plex+Mono:wght@400;500&amp;family=Lato:ital,wght@0,400;0,700;0,900;1,400&amp;display=swap">
 <link rel="stylesheet" href="assets/liner-notes.css">
 <link rel="stylesheet" href="assets/site.css">
 <script>document.documentElement.classList.add("js");</script>
@@ -38,8 +38,11 @@
   <section class="hero" aria-labelledby="title">
     <img class="sleeve" src="assets/icon-640.png" width="320" height="320" alt="The Liner Notes icon: six ink lines on warm paper">
     <div class="hero-copy">
-      <p class="ln-eyebrow">Personal music player</p>
       <h1 id="title" class="masthead">Liner Notes</h1>
+      <div class="masthead-line">
+        <p class="ln-eyebrow">Personal music player</p>
+        <p class="ln-eyebrow">Mac · Android</p>
+      </div>
       <p class="lede">A music player that reads like a magazine. Album art on every page, your playlists kept as plain files, and the path from the file to your headphones told in words and numbers.</p>
       <div class="hero-actions">
         <a class="ln-btn ln-btn-primary" data-download="mac" href="https://github.com/crowlemai/Liner-Notes-Builds/releases">
@@ -49,7 +52,64 @@
           <svg class="ln-icon" aria-hidden="true"><use href="#icon-download"/></svg>Download for Android
         </a>
       </div>
-      <p class="meta">For Mac and Android. New builds arrive inside the app.</p>
+      <p class="meta">Bit-perfect over USB on Android, and with exclusive access on the Mac. New builds arrive inside the app.</p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="inside">
+    <header class="ln-section">
+      <div class="ln-section-text">
+        <h2 id="inside" class="ln-eyebrow">In the sleeve</h2>
+        <div class="screen-tabs" role="tablist" aria-labelledby="inside">
+          <button type="button" role="tab" id="tab-serendipity" aria-controls="screen-serendipity" aria-selected="false" tabindex="-1">Serendipity</button>
+          <button type="button" role="tab" id="tab-albums" aria-controls="screen-albums" aria-selected="true">Albums</button>
+          <button type="button" role="tab" id="tab-tracks" aria-controls="screen-tracks" aria-selected="false" tabindex="-1">Tracks</button>
+          <button type="button" role="tab" id="tab-stats" aria-controls="screen-stats" aria-selected="false" tabindex="-1">Stats</button>
+          <button type="button" role="tab" id="tab-annual" aria-controls="screen-annual" aria-selected="false" tabindex="-1">Annual</button>
+        </div>
+      </div>
+    </header>
+
+    <div class="screens">
+      <figure class="screen" id="screen-serendipity" role="tabpanel" hidden aria-labelledby="tab-serendipity" style="--r: calc(1003 / 1280)">
+        <figcaption>
+          <h3 class="screen-title">Serendipity</h3>
+          <p class="screen-text">Drawn at random from your library: a record, a few more filed beside it, and one track lifted off an album.</p>
+        </figcaption>
+        <img src="assets/screens/serendipity-1280.webp" srcset="assets/screens/serendipity-640.webp 501w, assets/screens/serendipity-1280.webp 1003w" sizes="(max-width: 760px) calc(100vw - 32px), 650px" width="1003" height="1280" loading="lazy" decoding="async" alt="The Serendipity page: a soundtrack drawn at random, three albums like it, and a track lifted off another album.">
+      </figure>
+
+      <figure class="screen" id="screen-albums" role="tabpanel" aria-labelledby="tab-albums" style="--r: calc(979 / 1280)">
+        <figcaption>
+          <h3 class="screen-title">Albums</h3>
+          <p class="screen-text">Art first, with what is on rotation at the top. Filter by genre, and sort by release, recent plays or play count.</p>
+        </figcaption>
+        <img src="assets/screens/albums-1280.webp" srcset="assets/screens/albums-640.webp 490w, assets/screens/albums-1280.webp 979w" sizes="(max-width: 760px) calc(100vw - 32px), 650px" width="979" height="1280" decoding="async" alt="The Albums page: genre and sort filters, an On rotation shelf, and a grid of album art.">
+      </figure>
+
+      <figure class="screen" id="screen-tracks" role="tabpanel" hidden aria-labelledby="tab-tracks" style="--r: calc(1361 / 1280)">
+        <figcaption>
+          <h3 class="screen-title">Tracks</h3>
+          <p class="screen-text">Every track, filtered by genre down to the subgenre. Playlists are M3U files tagged by genre, so your Mac and your player share them.</p>
+        </figcaption>
+        <img src="assets/screens/tracks-1280.webp" srcset="assets/screens/tracks-640.webp 681w, assets/screens/tracks-1280.webp 1361w" sizes="(max-width: 760px) calc(100vw - 32px), 650px" width="1361" height="1280" loading="lazy" decoding="async" alt="The Tracks page filtered to Indie Rock: subgenre filters, a tagged playlist, and the track list.">
+      </figure>
+
+      <figure class="screen" id="screen-stats" role="tabpanel" hidden aria-labelledby="tab-stats" style="--r: calc(1387 / 1280)">
+        <figcaption>
+          <h3 class="screen-title">Stats</h3>
+          <p class="screen-text">Your listening, read from ListenBrainz: by year, by the hour, and for the week, the month or all time.</p>
+        </figcaption>
+        <img src="assets/screens/stats-1280.webp" srcset="assets/screens/stats-640.webp 694w, assets/screens/stats-1280.webp 1387w" sizes="(max-width: 760px) calc(100vw - 32px), 650px" width="1387" height="1280" loading="lazy" decoding="async" alt="The Stats page: 79,789 listens from ListenBrainz, a chart by year and a grid by hour.">
+      </figure>
+
+      <figure class="screen" id="screen-annual" role="tabpanel" hidden aria-labelledby="tab-annual" style="--r: calc(998 / 1280)">
+        <figcaption>
+          <h3 class="screen-title">Annual</h3>
+          <p class="screen-text">Each year on its own card: the album of the year, then the year in colour, the calendar and the mixtape.</p>
+        </figcaption>
+        <img src="assets/screens/annual-1280.webp" srcset="assets/screens/annual-640.webp 499w, assets/screens/annual-1280.webp 998w" sizes="(max-width: 760px) calc(100vw - 32px), 650px" width="998" height="1280" loading="lazy" decoding="async" alt="An Annual card for 2022, with Crash by Charli XCX as the album of the year.">
+      </figure>
     </div>
   </section>
 
@@ -102,35 +162,6 @@
           <summary>SHA-256</summary>
           <code></code>
         </details>
-      </article>
-    </div>
-  </section>
-
-  <section class="section" aria-labelledby="inside">
-    <header class="ln-section">
-      <div class="ln-section-text">
-        <h2 id="inside" class="ln-section-title">In the sleeve</h2>
-      </div>
-    </header>
-
-    <div class="notes">
-      <article class="note">
-        <h3 class="note-title">The signal</h3>
-        <p>Every track states how it reaches you, in words and numbers. Bit-perfect over USB on Android, and with exclusive access on the Mac.</p>
-        <ul class="levels" aria-label="Signal quality levels, best to worst">
-          <li class="ln-quality ln-q-lossless"><span class="ln-quality-dot" aria-hidden="true"></span><span class="ln-quality-word">Lossless</span></li>
-          <li class="ln-quality ln-q-enhanced"><span class="ln-quality-dot" aria-hidden="true"></span><span class="ln-quality-word">Enhanced</span></li>
-          <li class="ln-quality ln-q-hq"><span class="ln-quality-dot" aria-hidden="true"></span><span class="ln-quality-word">High quality</span></li>
-          <li class="ln-quality ln-q-lq"><span class="ln-quality-dot" aria-hidden="true"></span><span class="ln-quality-word">Low quality</span></li>
-        </ul>
-      </article>
-      <article class="note">
-        <h3 class="note-title">The pages</h3>
-        <p>Albums, artists, Serendipity and Stats, set like print: serif names, generous margins and the art first.</p>
-      </article>
-      <article class="note">
-        <h3 class="note-title">The playlists</h3>
-        <p>Plain M3U files in a folder you choose, tagged by genre. Sync the folder, and your Mac and your player share them.</p>
       </article>
     </div>
   </section>
