@@ -132,6 +132,8 @@
 .ln-btn-primary:hover { background: var(--accent-strong); }
 .ln-btn-secondary { background: transparent; color: var(--ink); border-color: var(--line-strong); }
 .ln-btn-secondary:hover { background: var(--surface-sunk); border-color: var(--ink-muted); }
+.ln-btn[disabled] { opacity: .45; cursor: not-allowed; }
+.ln-btn-secondary[disabled]:hover { background: transparent; border-color: var(--line-strong); }
 
 /* Credit list: a role in small capitals beside what it names, on hairlines */
 .ln-credits { margin: 0; display: grid; grid-template-columns: minmax(120px, 200px) minmax(0, 1fr); border-top: 1px solid var(--line); }

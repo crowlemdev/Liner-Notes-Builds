@@ -45,12 +45,10 @@
       </div>
       <p class="lede">A music player that reads like a magazine. Album art on every page, your playlists kept as plain files, and the digital path visually checked.</p>
       <div class="hero-actions">
-        <a class="ln-btn ln-btn-primary" data-download="mac" href="https://github.com/crowlemdev/Liner-Notes-Builds/releases">
-          <svg class="ln-icon" aria-hidden="true"><use href="#icon-download"/></svg>Download for Mac
-        </a>
-        <a class="ln-btn ln-btn-secondary" data-download="android" href="https://github.com/crowlemdev/Liner-Notes-Builds/releases">
+        <a class="ln-btn ln-btn-primary" data-download="android" href="https://github.com/crowlemdev/Liner-Notes-Builds/releases">
           <svg class="ln-icon" aria-hidden="true"><use href="#icon-download"/></svg>Download for Android
         </a>
+        <button type="button" class="ln-btn ln-btn-secondary" disabled>Coming soon for Mac</button>
       </div>
       <p class="meta">Bit-perfect over USB on Android, and with exclusive access on the Mac. New builds arrive inside the app.</p>
     </div>
@@ -149,27 +147,6 @@
     </header>
 
     <div class="platforms">
-      <article class="panel" data-platform="mac">
-        <p class="ln-eyebrow">For Mac</p>
-        <h3 class="panel-title">Liner Notes for Mac</h3>
-        <p class="meta">macOS 14 or later · Apple silicon</p>
-        <ol class="steps">
-          <li>Open the zip and drag Liner Notes into Applications.</li>
-          <li>Open it. macOS stops it the first time, as it does any app Apple has not checked.</li>
-          <li>In System Settings › Privacy &amp; Security, choose Open Anyway. From then on, updates install themselves.</li>
-        </ol>
-        <div class="panel-foot">
-          <a class="ln-btn ln-btn-secondary ln-btn-sm" data-download="mac" href="https://github.com/crowlemdev/Liner-Notes-Builds/releases">
-            <svg class="ln-icon" aria-hidden="true"><use href="#icon-download"/></svg>Download zip
-          </a>
-          <p class="spec" data-spec="mac">Finding the newest build…</p>
-        </div>
-        <details class="checksum" data-sha="mac" hidden>
-          <summary>SHA-256</summary>
-          <code></code>
-        </details>
-      </article>
-
       <article class="panel" data-platform="android">
         <p class="ln-eyebrow">For Android</p>
         <h3 class="panel-title">Liner Notes for Android</h3>
@@ -189,6 +166,20 @@
           <summary>SHA-256</summary>
           <code></code>
         </details>
+      </article>
+
+      <article class="panel" data-platform="mac">
+        <p class="ln-eyebrow">For Mac</p>
+        <h3 class="panel-title">Liner Notes for Mac</h3>
+        <p class="meta">macOS 14 or later · Apple silicon</p>
+        <ol class="steps">
+          <li>Open the zip and drag Liner Notes into Applications.</li>
+          <li>Open it. macOS stops it the first time, as it does any app Apple has not checked.</li>
+          <li>In System Settings › Privacy &amp; Security, choose Open Anyway. From then on, updates install themselves.</li>
+        </ol>
+        <div class="panel-foot">
+          <button type="button" class="ln-btn ln-btn-secondary ln-btn-sm" disabled>Coming soon</button>
+        </div>
       </article>
     </div>
   </section>

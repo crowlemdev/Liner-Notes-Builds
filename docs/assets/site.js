@@ -15,32 +15,14 @@
   var CACHE_KEY = "ln-builds-v1";
   var CACHE_MS = 10 * 60 * 1000; // GitHub allows 60 unauthenticated calls an hour per visitor
   var PLATFORMS = {
+    // The Mac app is coming soon: the page has no Mac download buttons yet,
+    // so this entry fills nothing until they return to index.html.
     mac: { prefix: "mac-build-", asset: "Liner-Notes.zip" },
     android: { prefix: "android-build-", asset: "Liner-Notes.apk" }
   };
 
   function each(selector, fn) {
     Array.prototype.forEach.call(document.querySelectorAll(selector), fn);
-  }
-
-  /* Put the visitor's own platform first */
-  function preferPlatform() {
-    var ua = navigator.userAgent || "";
-    var touchMac = /Macintosh/.test(ua) && navigator.maxTouchPoints > 1; // an iPad asking for the desktop site
-    var mine = /Android/i.test(ua) ? "android" : /Macintosh/.test(ua) && !touchMac ? "mac" : null;
-    if (mine !== "android") return; // the page is laid out Mac first already
-
-    var actions = document.querySelector(".hero-actions");
-    var mac = actions && actions.querySelector('[data-download="mac"]');
-    var android = actions && actions.querySelector('[data-download="android"]');
-    if (mac && android) {
-      mac.classList.replace("ln-btn-primary", "ln-btn-secondary");
-      android.classList.replace("ln-btn-secondary", "ln-btn-primary");
-      actions.insertBefore(android, mac);
-    }
-    var platforms = document.querySelector(".platforms");
-    var panel = platforms && platforms.querySelector('[data-platform="android"]');
-    if (panel) platforms.insertBefore(panel, platforms.firstElementChild);
   }
 
   /* The newest build per platform, by build number */
@@ -182,7 +164,6 @@
 
   function start() {
     setupScreens();
-    preferPlatform();
     var fallBack = function () { Object.keys(PLATFORMS).forEach(showFallback); };
     if (!window.fetch || !window.Promise) return fallBack();
     load().then(render, fallBack);
