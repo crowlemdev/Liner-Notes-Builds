@@ -74,7 +74,7 @@ p { margin: 0; }
 .hero + .section { margin-top: var(--space-24); }
 .ln-section + * { margin-top: var(--space-8); }
 
-/* ---- In the sleeve: the apps' own page names switch the screenshot ---- */
+/* ---- Gallery: the apps' own page names switch the screenshot ---- */
 
 .screen-tabs {
   display: flex;

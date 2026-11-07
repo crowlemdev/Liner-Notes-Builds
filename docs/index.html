@@ -43,7 +43,7 @@
         <p class="ln-eyebrow">Personal music player</p>
         <p class="ln-eyebrow">Mac · Android</p>
       </div>
-      <p class="lede">A music player that reads like a magazine. Album art on every page, your playlists kept as plain files, and the path from the file to your headphones told in words and numbers.</p>
+      <p class="lede">A music player that reads like a magazine. Album art on every page, your playlists kept as plain files, and the digital path visually checked.</p>
       <div class="hero-actions">
         <a class="ln-btn ln-btn-primary" data-download="mac" href="https://github.com/crowlemai/Liner-Notes-Builds/releases">
           <svg class="ln-icon" aria-hidden="true"><use href="#icon-download"/></svg>Download for Mac
@@ -56,11 +56,10 @@
     </div>
   </section>
 
-  <section class="section" aria-labelledby="inside">
+  <section class="section" aria-label="Screens from the app">
     <header class="ln-section">
       <div class="ln-section-text">
-        <h2 id="inside" class="ln-eyebrow">In the sleeve</h2>
-        <div class="screen-tabs" role="tablist" aria-labelledby="inside">
+        <div class="screen-tabs" role="tablist" aria-label="Pages of the app">
           <button type="button" role="tab" id="tab-serendipity" aria-controls="screen-serendipity" aria-selected="false" tabindex="-1">Serendipity</button>
           <button type="button" role="tab" id="tab-albums" aria-controls="screen-albums" aria-selected="true">Albums</button>
           <button type="button" role="tab" id="tab-tracks" aria-controls="screen-tracks" aria-selected="false" tabindex="-1">Tracks</button>
@@ -73,15 +72,15 @@
     <div class="screens">
       <figure class="screen" id="screen-serendipity" role="tabpanel" hidden aria-labelledby="tab-serendipity" style="--r: calc(1003 / 1280)">
         <figcaption>
-          <h3 class="screen-title">Serendipity</h3>
-          <p class="screen-text">Drawn at random from your library: a record, a few more filed beside it, and one track lifted off an album.</p>
+          <h2 class="screen-title">Serendipity</h2>
+          <p class="screen-text">Rediscover your library</p>
         </figcaption>
         <img src="assets/screens/serendipity-1280.webp" srcset="assets/screens/serendipity-640.webp 501w, assets/screens/serendipity-1280.webp 1003w" sizes="(max-width: 760px) calc(100vw - 32px), 650px" width="1003" height="1280" loading="lazy" decoding="async" alt="The Serendipity page: a soundtrack drawn at random, three albums like it, and a track lifted off another album.">
       </figure>
 
       <figure class="screen" id="screen-albums" role="tabpanel" aria-labelledby="tab-albums" style="--r: calc(979 / 1280)">
         <figcaption>
-          <h3 class="screen-title">Albums</h3>
+          <h2 class="screen-title">Albums</h2>
           <p class="screen-text">Art first, with what is on rotation at the top. Filter by genre, and sort by release, recent plays or play count.</p>
         </figcaption>
         <img src="assets/screens/albums-1280.webp" srcset="assets/screens/albums-640.webp 490w, assets/screens/albums-1280.webp 979w" sizes="(max-width: 760px) calc(100vw - 32px), 650px" width="979" height="1280" decoding="async" alt="The Albums page: genre and sort filters, an On rotation shelf, and a grid of album art.">
@@ -89,7 +88,7 @@
 
       <figure class="screen" id="screen-tracks" role="tabpanel" hidden aria-labelledby="tab-tracks" style="--r: calc(1361 / 1280)">
         <figcaption>
-          <h3 class="screen-title">Tracks</h3>
+          <h2 class="screen-title">Tracks</h2>
           <p class="screen-text">Every track, filtered by genre down to the subgenre. Playlists are M3U files tagged by genre, so your Mac and your player share them.</p>
         </figcaption>
         <img src="assets/screens/tracks-1280.webp" srcset="assets/screens/tracks-640.webp 681w, assets/screens/tracks-1280.webp 1361w" sizes="(max-width: 760px) calc(100vw - 32px), 650px" width="1361" height="1280" loading="lazy" decoding="async" alt="The Tracks page filtered to Indie Rock: subgenre filters, a tagged playlist, and the track list.">
@@ -97,7 +96,7 @@
 
       <figure class="screen" id="screen-stats" role="tabpanel" hidden aria-labelledby="tab-stats" style="--r: calc(1387 / 1280)">
         <figcaption>
-          <h3 class="screen-title">Stats</h3>
+          <h2 class="screen-title">Stats</h2>
           <p class="screen-text">Your listening, read from ListenBrainz: by year, by the hour, and for the week, the month or all time.</p>
         </figcaption>
         <img src="assets/screens/stats-1280.webp" srcset="assets/screens/stats-640.webp 694w, assets/screens/stats-1280.webp 1387w" sizes="(max-width: 760px) calc(100vw - 32px), 650px" width="1387" height="1280" loading="lazy" decoding="async" alt="The Stats page: 79,789 listens from ListenBrainz, a chart by year and a grid by hour.">
@@ -105,7 +104,7 @@
 
       <figure class="screen" id="screen-annual" role="tabpanel" hidden aria-labelledby="tab-annual" style="--r: calc(998 / 1280)">
         <figcaption>
-          <h3 class="screen-title">Annual</h3>
+          <h2 class="screen-title">Annual</h2>
           <p class="screen-text">Each year on its own card: the album of the year, then the year in colour, the calendar and the mixtape.</p>
         </figcaption>
         <img src="assets/screens/annual-1280.webp" srcset="assets/screens/annual-640.webp 499w, assets/screens/annual-1280.webp 998w" sizes="(max-width: 760px) calc(100vw - 32px), 650px" width="998" height="1280" loading="lazy" decoding="async" alt="An Annual card for 2022, with Crash by Charli XCX as the album of the year.">

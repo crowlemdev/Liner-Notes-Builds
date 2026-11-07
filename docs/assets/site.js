@@ -144,7 +144,7 @@
     });
   }
 
-  /* In the sleeve: the apps' page names switch the screenshot, as in the apps */
+  /* Gallery: the apps' page names switch the screenshot, as in the apps */
   function setupScreens() {
     var tabs = Array.prototype.slice.call(document.querySelectorAll('.screen-tabs [role="tab"]'));
     if (!tabs.length) return;
