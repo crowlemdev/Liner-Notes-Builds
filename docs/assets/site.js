@@ -9,7 +9,7 @@
 (function () {
   "use strict";
 
-  var REPO = "crowlemai/Liner-Notes-Builds";
+  var REPO = "crowlemdev/Liner-Notes-Builds";
   var API = "https://api.github.com/repos/" + REPO + "/releases?per_page=100";
   var RELEASES = "https://github.com/" + REPO + "/releases";
   var CACHE_KEY = "ln-builds-v1";
