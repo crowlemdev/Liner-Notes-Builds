@@ -3,15 +3,14 @@
   Finds the newest published Mac and Android builds in this repository's
   releases (tags mac-build-N and android-build-N; prereleases and drafts are
   skipped) and points the download buttons at their files. Without JavaScript,
-  or if GitHub cannot be reached, the buttons keep their link to the releases
-  page.
+  or if GitHub cannot be reached, the Android buttons keep their link to a list
+  of the Android builds alone; the page links to no other list of builds.
 */
 (function () {
   "use strict";
 
   var REPO = "crowlemdev/Liner-Notes-Builds";
   var API = "https://api.github.com/repos/" + REPO + "/releases?per_page=100";
-  var RELEASES = "https://github.com/" + REPO + "/releases";
   var CACHE_KEY = "ln-builds-v1";
   var CACHE_MS = 10 * 60 * 1000; // GitHub allows 60 unauthenticated calls an hour per visitor
   var PLATFORMS = {
@@ -99,12 +98,7 @@
 
   function showFallback(key) {
     each('[data-spec="' + key + '"]', function (el) {
-      el.textContent = "";
-      var a = document.createElement("a");
-      a.className = "ln-link is-accent";
-      a.href = RELEASES;
-      a.textContent = "See every build ⟶";
-      el.appendChild(a);
+      el.textContent = "Build details unavailable just now";
     });
   }
 
