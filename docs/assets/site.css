@@ -107,7 +107,7 @@ p { margin: 0; }
   margin: 0;
   display: grid;
   grid-template-columns: minmax(0, 300px) minmax(0, 1fr);
-  gap: var(--space-12);
+  gap: var(--space-8) var(--space-12);
   align-items: start;
 }
 .screen-title {
@@ -119,12 +119,41 @@ p { margin: 0; }
   color: var(--ink);
 }
 .screen-text { font-size: 19px; line-height: 30px; color: var(--ink); }
-.screen img {
+.screen > img {
   display: block;
   width: min(100%, calc(var(--stage) * var(--r)));
   height: auto;
   border-radius: var(--radius-md);
   box-shadow: 0 0 0 1px var(--line), var(--shadow-art);
+  background: #111116;
+}
+
+.screen-text + .screen-text { margin-top: var(--space-4); }
+
+/* Recaps under the Stats screen: one height, each card its own width,
+   scrolling sideways when the row is wider than the page */
+.recaps {
+  --recap: 340px;
+  grid-column: 1 / -1;
+  list-style: none;
+  margin: 0;
+  padding: 1px 1px var(--space-2);
+  display: flex;
+  gap: var(--space-4);
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  scrollbar-width: thin;
+  scrollbar-color: var(--line-strong) transparent;
+  border-radius: var(--radius-sm);
+}
+.recaps:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
+.recaps li { flex: none; scroll-snap-align: start; }
+.recaps img {
+  display: block;
+  height: var(--recap);
+  width: auto;
+  border-radius: var(--radius-md);
+  box-shadow: 0 0 0 1px var(--line);
   background: #111116;
 }
 
@@ -270,7 +299,8 @@ html:not(.js) .spec { display: none; } /* without JavaScript the buttons go to t
   .hero { grid-template-columns: 1fr; gap: var(--space-6); }
   .sleeve { width: 144px; }
   .hero + .section { margin-top: var(--space-16); }
-  .screen img { width: 100%; }
+  .screen > img { width: 100%; }
+  .recaps { --recap: 280px; }
   .platforms { grid-template-columns: 1fr; gap: var(--space-4); }
   .panel { padding: var(--space-4); }
 }
