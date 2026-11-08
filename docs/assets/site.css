@@ -18,10 +18,8 @@ p { margin: 0; }
 
 /* ---- Hero: the masthead and the words ---- */
 
-/* The masthead and its rule span the page; the reading text keeps the measure */
+/* The whole hero spans the page, text included */
 .hero-copy { display: grid; gap: var(--space-3); }
-.hero-copy > .lede,
-.hero-copy > .meta { max-width: var(--measure); }
 
 /* The masthead of the apps' Annual card: the name over a strong rule */
 .masthead {
