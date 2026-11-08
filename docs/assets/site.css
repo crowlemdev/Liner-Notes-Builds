@@ -67,7 +67,7 @@ p { margin: 0; }
 /* ---- Sections ---- */
 
 .section { margin-top: var(--space-16); }
-.hero + .section { margin-top: var(--space-24); }
+.hero + .section { margin-top: var(--space-12); }
 .ln-section + * { margin-top: var(--space-8); }
 
 /* ---- Gallery: the apps' own page names switch the screenshot ---- */
@@ -290,7 +290,6 @@ html:not(.js) .spec { display: none; } /* without JavaScript the buttons go to t
 }
 @media (max-width: 760px) {
   .page { padding: var(--space-8) var(--space-4) 0; }
-  .hero + .section { margin-top: var(--space-16); }
   .screen > img { width: 100%; }
   .recaps { --recap: 280px; }
   .platforms { grid-template-columns: 1fr; gap: var(--space-4); }
