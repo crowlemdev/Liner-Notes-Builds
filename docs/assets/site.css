@@ -1,18 +1,8 @@
 /* Liner Notes site: page layout on top of liner-notes.css */
 
 :root {
-  /* shadow-art as a filter, so it follows the icon's rounded shape */
-  --sleeve-shadow: drop-shadow(0 1px 2px rgba(20, 20, 28, 0.10)) drop-shadow(0 12px 32px rgba(20, 20, 28, 0.14));
   /* height of the screenshot stage */
   --stage: 600px;
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --sleeve-shadow: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.50)) drop-shadow(0 12px 32px rgba(0, 0, 0, 0.55));
-  }
-}
-:root[data-theme="dark"] {
-  --sleeve-shadow: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.50)) drop-shadow(0 12px 32px rgba(0, 0, 0, 0.55));
 }
 
 html { background: var(--canvas); }
@@ -26,21 +16,8 @@ p { margin: 0; }
   padding: var(--space-16) var(--space-12) 0;
 }
 
-/* ---- Hero: the album-page spread, sleeve left, words right ---- */
+/* ---- Hero: the masthead and the words ---- */
 
-.hero {
-  display: grid;
-  grid-template-columns: var(--art-hero) minmax(0, 1fr);
-  gap: var(--space-12);
-  align-items: center;
-}
-.sleeve {
-  display: block;
-  width: var(--art-hero);
-  height: auto;
-  aspect-ratio: 1 / 1;
-  filter: var(--sleeve-shadow);
-}
 .hero-copy { display: grid; gap: var(--space-3); max-width: var(--measure); }
 
 /* The masthead of the apps' Annual card: the name over a strong rule */
@@ -287,8 +264,6 @@ html:not(.js) .spec { display: none; } /* without JavaScript the buttons go to t
   .screen-text { font-size: 17px; line-height: 27px; }
 }
 @media (max-width: 960px) {
-  .hero { grid-template-columns: 240px minmax(0, 1fr); gap: var(--space-8); }
-  .sleeve { width: 240px; }
   .screen { grid-template-columns: minmax(0, 1fr); gap: var(--space-4); }
   .screen-text { max-width: var(--measure); }
   .sound { grid-template-columns: minmax(0, 1fr); gap: var(--space-8); }
@@ -296,8 +271,6 @@ html:not(.js) .spec { display: none; } /* without JavaScript the buttons go to t
 }
 @media (max-width: 760px) {
   .page { padding: var(--space-8) var(--space-4) 0; }
-  .hero { grid-template-columns: 1fr; gap: var(--space-6); }
-  .sleeve { width: 144px; }
   .hero + .section { margin-top: var(--space-16); }
   .screen > img { width: 100%; }
   .recaps { --recap: 280px; }
