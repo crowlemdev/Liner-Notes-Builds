@@ -18,8 +18,26 @@ p { margin: 0; }
 
 /* ---- Hero: the masthead and the words ---- */
 
-/* The whole hero spans the page, text included */
+/* The whole hero spans the page. Where there is room, the download buttons
+   sit beside the title, above the rule; narrower screens keep them under the lede. */
 .hero-copy { display: grid; gap: var(--space-3); }
+@media (min-width: 1041px) {
+  .hero-copy {
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "title actions"
+      "line  line"
+      "lede  lede"
+      "meta  meta";
+    column-gap: var(--space-6);
+  }
+  .hero-copy > .masthead { grid-area: title; }
+  .hero-copy > .masthead-line { grid-area: line; }
+  .hero-copy > .lede { grid-area: lede; }
+  /* 21px is the space under the 80px title's baseline, so the buttons rest on it */
+  .hero-copy > .hero-actions { grid-area: actions; align-self: end; margin: 0 0 21px; }
+  .hero-copy > .meta { grid-area: meta; }
+}
 
 /* The masthead of the apps' Annual card: the name over a strong rule */
 .masthead {
