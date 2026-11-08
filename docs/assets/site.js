@@ -108,7 +108,7 @@
       if (!b) return showFallback(key);
       each('[data-download="' + key + '"]', function (a) { a.href = b.url; });
       each('[data-spec="' + key + '"]', function (el) {
-        el.textContent = [b.version, "build " + b.build, megabytes(b.size), day(b.date)]
+        el.textContent = [b.version && "Version " + b.version, megabytes(b.size), day(b.date)]
           .filter(Boolean).join(" · ");
       });
       if (b.sha256) {
