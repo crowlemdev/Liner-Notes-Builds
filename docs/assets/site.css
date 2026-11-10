@@ -263,55 +263,6 @@ html:not(.js) .spec { display: none; } /* without JavaScript the buttons go to t
   word-break: break-all;
 }
 
-/* ---- Release notes: a credit list, the version and date beside each note ---- */
-
-.ln-section > .notes-platforms { padding-bottom: 6px; }
-.ln-icon.is-flipped { transform: scaleX(-1); }
-
-.notes-list dt { display: grid; align-content: start; }
-.note-version { color: var(--ink); }
-.note-date {
-  font: 500 12px/16px var(--font-mono);
-  font-variant-numeric: tabular-nums;
-  letter-spacing: 0;
-  text-transform: none;
-  color: var(--ink-muted);
-}
-.notes-list dd { overflow-wrap: anywhere; }
-.notes-list dd > * + * { margin-top: var(--space-2); }
-.notes-list dd ul,
-.notes-list dd ol { margin: 0; padding-left: 1.25em; }
-.notes-list dd blockquote {
-  margin: 0;
-  padding-left: var(--space-4);
-  border-left: 2px solid var(--line-strong);
-  color: var(--ink-muted);
-}
-.notes-list dd code { font: 400 0.875em/1 var(--font-mono); }
-.notes-list dd pre {
-  margin: 0;
-  padding: var(--space-3);
-  overflow-x: auto;
-  background: var(--surface-sunk);
-  border-radius: var(--radius-sm);
-}
-.notes-list dd pre code { line-height: 1.5; }
-.note-heading { font-weight: 700; }
-
-.notes-pager {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-4);
-  margin-top: var(--space-6);
-}
-.notes-pager[hidden] { display: none; }
-
-@media (max-width: 480px) {
-  /* The credit list stacks here, so the version and date share a line */
-  .notes-list dt { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 var(--space-3); }
-}
-
 /* Footer */
 .foot {
   display: flex;
