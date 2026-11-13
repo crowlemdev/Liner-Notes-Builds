@@ -3,8 +3,8 @@
   Finds the newest published Mac and Android builds in this repository's
   releases (tags mac-build-N and android-build-N; prereleases and drafts are
   skipped) and points the download buttons at their files. Without JavaScript,
-  or if GitHub cannot be reached, the Android buttons keep their link to a list
-  of the Android builds alone; the page links to no other list of builds.
+  or if GitHub cannot be reached, each button keeps its link to a list of its
+  own platform's builds; the page links to no other list of builds.
 */
 (function () {
   "use strict";
@@ -14,14 +14,31 @@
   var CACHE_KEY = "ln-builds-v1";
   var CACHE_MS = 10 * 60 * 1000; // GitHub allows 60 unauthenticated calls an hour per visitor
   var PLATFORMS = {
-    // The Mac app is coming soon: the page has no Mac download buttons yet,
-    // so this entry fills nothing until they return to index.html.
     mac: { prefix: "mac-build-", asset: "Liner-Notes.zip" },
     android: { prefix: "android-build-", asset: "Liner-Notes.apk" }
   };
 
   function each(selector, fn) {
     Array.prototype.forEach.call(document.querySelectorAll(selector), fn);
+  }
+
+  /* A Mac visitor gets the Mac first: the page is laid out Android first */
+  function preferPlatform() {
+    var ua = navigator.userAgent || "";
+    var touchMac = /Macintosh/.test(ua) && navigator.maxTouchPoints > 1; // an iPad asking for the desktop site
+    if (!/Macintosh/.test(ua) || touchMac) return;
+
+    var actions = document.querySelector(".hero-actions");
+    var mac = actions && actions.querySelector('[data-download="mac"]');
+    var android = actions && actions.querySelector('[data-download="android"]');
+    if (mac && android) {
+      android.classList.replace("ln-btn-primary", "ln-btn-secondary");
+      mac.classList.replace("ln-btn-secondary", "ln-btn-primary");
+      actions.insertBefore(mac, android);
+    }
+    var platforms = document.querySelector(".platforms");
+    var panel = platforms && platforms.querySelector('[data-platform="mac"]');
+    if (panel) platforms.insertBefore(panel, platforms.firstElementChild);
   }
 
   /* The newest build per platform, by build number */
@@ -158,6 +175,7 @@
 
   function start() {
     setupScreens();
+    preferPlatform();
     var fallBack = function () { Object.keys(PLATFORMS).forEach(showFallback); };
     if (!window.fetch || !window.Promise) return fallBack();
     load().then(render, fallBack);
