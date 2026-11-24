@@ -1,8 +1,9 @@
 /*
   Liner Notes site.
-  Finds the newest published Mac and Android builds in this repository's
-  releases (tags mac-build-N and android-build-N; prereleases and drafts are
-  skipped) and points the download buttons at their files. Without JavaScript,
+  Finds the newest published Mac, Android and Linux builds in this
+  repository's releases (tags mac-build-N, android-build-N and linux-build-N;
+  prereleases and drafts are skipped) and points the download buttons at their
+  files: for Linux, the .deb (its name carries its version) and the tarball. Without JavaScript,
   or if GitHub cannot be reached, each button keeps its link to a list of its
   own platform's builds; the page links to no other list of builds.
 */
@@ -11,33 +12,43 @@
 
   var REPO = "crowlemdev/Liner-Notes-Builds";
   var API = "https://api.github.com/repos/" + REPO + "/releases?per_page=100";
-  var CACHE_KEY = "ln-builds-v1";
+  var CACHE_KEY = "ln-builds-v2"; // v2: Linux's builds too
   var CACHE_MS = 10 * 60 * 1000; // GitHub allows 60 unauthenticated calls an hour per visitor
   var PLATFORMS = {
     mac: { prefix: "mac-build-", asset: "Liner-Notes.zip" },
-    android: { prefix: "android-build-", asset: "Liner-Notes.apk" }
+    android: { prefix: "android-build-", asset: "Liner-Notes.apk" },
+    linux: { prefix: "linux-build-", asset: /^liner-notes_[0-9.]+_amd64\.deb$/ },
+    linuxTarball: { prefix: "linux-build-", asset: "Liner-Notes-linux-x86_64.tar.gz" }
   };
+
+  /* An asset's name, as a platform names it: exactly, or by a pattern */
+  function named(asset, name) {
+    return typeof asset === "string" ? name === asset : asset.test(name);
+  }
 
   function each(selector, fn) {
     Array.prototype.forEach.call(document.querySelectorAll(selector), fn);
   }
 
-  /* A Mac visitor gets the Mac first: the page is laid out Android first */
+  /* A Mac or Linux visitor gets theirs first: the page is laid out Android first */
   function preferPlatform() {
     var ua = navigator.userAgent || "";
     var touchMac = /Macintosh/.test(ua) && navigator.maxTouchPoints > 1; // an iPad asking for the desktop site
-    if (!/Macintosh/.test(ua) || touchMac) return;
+    var key = null;
+    if (/Macintosh/.test(ua) && !touchMac) key = "mac";
+    else if (/Linux/.test(ua) && !/Android/.test(ua) && !/CrOS/.test(ua)) key = "linux";
+    if (!key) return;
 
     var actions = document.querySelector(".hero-actions");
-    var mac = actions && actions.querySelector('[data-download="mac"]');
-    var android = actions && actions.querySelector('[data-download="android"]');
-    if (mac && android) {
-      android.classList.replace("ln-btn-primary", "ln-btn-secondary");
-      mac.classList.replace("ln-btn-secondary", "ln-btn-primary");
-      actions.insertBefore(mac, android);
+    var mine = actions && actions.querySelector('[data-download="' + key + '"]');
+    var first = actions && actions.querySelector(".ln-btn-primary");
+    if (mine && first && mine !== first) {
+      first.classList.replace("ln-btn-primary", "ln-btn-secondary");
+      mine.classList.replace("ln-btn-secondary", "ln-btn-primary");
+      actions.insertBefore(mine, actions.firstElementChild);
     }
     var platforms = document.querySelector(".platforms");
-    var panel = platforms && platforms.querySelector('[data-platform="mac"]');
+    var panel = platforms && platforms.querySelector('[data-platform="' + key + '"]');
     if (panel) platforms.insertBefore(panel, platforms.firstElementChild);
   }
 
@@ -53,7 +64,7 @@
         var build = Number(r.tag_name.slice(p.prefix.length));
         if (!Number.isInteger(build)) return;
         var file = (r.assets || []).filter(function (a) {
-          return a.name === p.asset && a.state === "uploaded";
+          return named(p.asset, a.name) && a.state === "uploaded";
         })[0];
         if (!file || (best && best.build >= build)) return;
         var version = /\b(\d+\.\d+\.\d+)\b/.exec(r.name || "");
@@ -99,7 +110,7 @@
       })
       .then(function (releases) {
         var builds = pick(releases);
-        if (builds.mac || builds.android) writeCache(builds);
+        if (builds.mac || builds.android || builds.linux) writeCache(builds);
         return builds;
       });
   }
@@ -113,16 +124,16 @@
     return new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "short", year: "numeric" }).format(d);
   }
 
-  function showFallback(key) {
+  function showFallback(key, text) {
     each('[data-spec="' + key + '"]', function (el) {
-      el.textContent = "Build details unavailable just now";
+      el.textContent = text || "Build details unavailable just now";
     });
   }
 
   function render(builds) {
     Object.keys(PLATFORMS).forEach(function (key) {
       var b = builds[key];
-      if (!b) return showFallback(key);
+      if (!b) return showFallback(key, "No build published yet");
       each('[data-download="' + key + '"]', function (a) { a.href = b.url; });
       each('[data-spec="' + key + '"]', function (el) {
         el.textContent = [b.version && "Version " + b.version, megabytes(b.size), day(b.date)]

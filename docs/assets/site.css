@@ -180,8 +180,18 @@ html:not(.js) .screen[hidden] { display: grid; }
 
 .platforms {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: var(--space-6);
+}
+/* A command to type, inside a step or a note */
+.steps code,
+.panel > .meta code {
+  font: 500 13px/20px var(--font-mono);
+  padding: 1px 4px;
+  border-radius: 4px;
+  background: var(--surface-sunk);
+  color: var(--ink);
+  overflow-wrap: anywhere;
 }
 .panel {
   display: grid;
@@ -279,6 +289,7 @@ html:not(.js) .spec { display: none; } /* without JavaScript the buttons go to t
 
 @media (max-width: 1100px) {
   :root { --stage: 520px; }
+  .platforms { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .screen { grid-template-columns: minmax(0, 240px) minmax(0, 1fr); gap: var(--space-8); }
   .screen-text { font-size: 17px; line-height: 27px; }
 }

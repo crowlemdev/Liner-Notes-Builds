@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Liner Notes</title>
-<meta name="description" content="Liner Notes, a music player that reads like a magazine. Download it for Mac or Android.">
+<meta name="description" content="Liner Notes, a music player that reads like a magazine. Download it for Mac, Android or Linux.">
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#f5f5f7" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#111116" media="(prefers-color-scheme: dark)">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Liner Notes">
-<meta property="og:description" content="A music player that reads like a magazine. For Mac and Android.">
+<meta property="og:description" content="A music player that reads like a magazine. For Mac, Android and Linux.">
 <meta property="og:url" content="https://crowlemdev.github.io/Liner-Notes-Builds/">
 <meta property="og:image" content="https://crowlemdev.github.io/Liner-Notes-Builds/assets/icon-512.png">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/icon-32.png">
@@ -40,7 +40,7 @@
       <h1 id="title" class="masthead">Liner Notes</h1>
       <div class="masthead-line">
         <p class="ln-eyebrow">Personal music player</p>
-        <p class="ln-eyebrow">Mac · Android</p>
+        <p class="ln-eyebrow">Mac · Android · Linux</p>
       </div>
       <p class="lede">A fast, pretty music player for local file enjoyers. Album focused, with music stats integration, hearing correction, EQ and convolution for use on any device.</p>
       <div class="hero-actions">
@@ -50,8 +50,11 @@
         <a class="ln-btn ln-btn-secondary" data-download="mac" href="https://github.com/crowlemdev/Liner-Notes-Builds/releases?q=mac-build&amp;expanded=true">
           <svg class="ln-icon" aria-hidden="true"><use href="#icon-download"/></svg>Download for Mac
         </a>
+        <a class="ln-btn ln-btn-secondary" data-download="linux" href="https://github.com/crowlemdev/Liner-Notes-Builds/releases?q=linux-build&amp;expanded=true">
+          <svg class="ln-icon" aria-hidden="true"><use href="#icon-download"/></svg>Download for Linux
+        </a>
       </div>
-      <p class="meta">Bit-perfect over USB on Android, and with exclusive access on the Mac. New builds arrive inside the app.</p>
+      <p class="meta">Bit-perfect over USB on Android, and with exclusive access on the Mac and Linux. New builds arrive inside the app.</p>
     </div>
   </section>
 
@@ -182,6 +185,28 @@
           <p class="spec" data-spec="mac">Finding the newest build…</p>
         </div>
         <details class="checksum" data-sha="mac" hidden>
+          <summary>SHA-256</summary>
+          <code></code>
+        </details>
+      </article>
+
+      <article class="panel" data-platform="linux">
+        <p class="ln-eyebrow">For Linux</p>
+        <h3 class="panel-title">Liner Notes for Linux</h3>
+        <p class="meta">Linux Mint 21 or later · Debian 12 or later · Ubuntu 22.04 or later · 64-bit PCs</p>
+        <ol class="steps">
+          <li><span>Download the .deb and open it, or run <code>sudo apt install ./liner-notes_*.deb</code> where you saved it.</span></li>
+          <li>Open Liner Notes from the menu. It plays through PulseAudio or PipeWire, and can take a USB DAC for itself.</li>
+          <li>From then on, updates install themselves into your home folder, with no password.</li>
+        </ol>
+        <div class="panel-foot">
+          <a class="ln-btn ln-btn-secondary ln-btn-sm" data-download="linux" href="https://github.com/crowlemdev/Liner-Notes-Builds/releases?q=linux-build&amp;expanded=true">
+            <svg class="ln-icon" aria-hidden="true"><use href="#icon-download"/></svg>Download .deb
+          </a>
+          <p class="spec" data-spec="linux">Finding the newest build…</p>
+        </div>
+        <p class="meta">On another distribution: the <a class="ln-link" data-download="linuxTarball" href="https://github.com/crowlemdev/Liner-Notes-Builds/releases?q=linux-build&amp;expanded=true">tarball</a>, unpacked, then <code>./install.sh</code>. It installs for you alone, with no password.</p>
+        <details class="checksum" data-sha="linux" hidden>
           <summary>SHA-256</summary>
           <code></code>
         </details>
