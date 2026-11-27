@@ -2,8 +2,10 @@
   Liner Notes site.
   Finds the newest published Mac, Android and Linux builds in this
   repository's releases (tags mac-build-N, android-build-N and linux-build-N;
-  prereleases and drafts are skipped) and points the download buttons at their
-  files: Linux's .deb, and its tarball for an install without admin rights. Without JavaScript,
+  drafts are skipped, and a prerelease is taken only for a platform with no
+  release yet) and points the download buttons at their files: Linux's .deb,
+  and its tarball for an install without admin rights. Every button downloads
+  a file. Without JavaScript,
   or if GitHub cannot be reached, each button keeps its link to a list of its
   own platform's builds; the page links to no other list of builds.
 */
@@ -12,7 +14,7 @@
 
   var REPO = "crowlemdev/Liner-Notes-Builds";
   var API = "https://api.github.com/repos/" + REPO + "/releases?per_page=100";
-  var CACHE_KEY = "ln-builds-v2"; // v2: with Linux's builds
+  var CACHE_KEY = "ln-builds-v3"; // v3: a prerelease where a platform has no release yet
   var CACHE_MS = 10 * 60 * 1000; // GitHub allows 60 unauthenticated calls an hour per visitor
   var PLATFORMS = {
     mac: { prefix: "mac-build-", asset: "Liner-Notes.zip" },
@@ -55,34 +57,38 @@
     if (panel) platforms.insertBefore(panel, platforms.firstElementChild);
   }
 
-  /* The newest build per platform, by build number */
+  /* The newest build per platform, by build number: its newest release, else (none yet) its newest prerelease */
   function pick(releases) {
     var out = {};
     Object.keys(PLATFORMS).forEach(function (key) {
-      var p = PLATFORMS[key];
-      var best = null;
-      (releases || []).forEach(function (r) {
-        if (!r || r.draft || r.prerelease || typeof r.tag_name !== "string") return;
-        if (r.tag_name.indexOf(p.prefix) !== 0) return;
-        var build = Number(r.tag_name.slice(p.prefix.length));
-        if (!Number.isInteger(build)) return;
-        var file = (r.assets || []).filter(function (a) {
-          return typeof a.name === "string" && isAsset(a.name, p.asset) && a.state === "uploaded";
-        })[0];
-        if (!file || (best && best.build >= build)) return;
-        var version = /\b(\d+\.\d+\.\d+)\b/.exec(r.name || "");
-        best = {
-          build: build,
-          version: version ? version[1] : null,
-          url: file.browser_download_url,
-          size: file.size,
-          sha256: typeof file.digest === "string" ? file.digest.replace(/^sha256:/, "") : null,
-          date: r.published_at
-        };
-      });
+      var best = newest(releases, PLATFORMS[key], false) || newest(releases, PLATFORMS[key], true);
       if (best) out[key] = best;
     });
     return out;
+  }
+
+  function newest(releases, p, prerelease) {
+    var best = null;
+    (releases || []).forEach(function (r) {
+      if (!r || r.draft || !!r.prerelease !== prerelease || typeof r.tag_name !== "string") return;
+      if (r.tag_name.indexOf(p.prefix) !== 0) return;
+      var build = Number(r.tag_name.slice(p.prefix.length));
+      if (!Number.isInteger(build)) return;
+      var file = (r.assets || []).filter(function (a) {
+        return typeof a.name === "string" && isAsset(a.name, p.asset) && a.state === "uploaded";
+      })[0];
+      if (!file || (best && best.build >= build)) return;
+      var version = /\b(\d+\.\d+\.\d+)\b/.exec(r.name || "");
+      best = {
+        build: build,
+        version: version ? version[1] : null,
+        url: file.browser_download_url,
+        size: file.size,
+        sha256: typeof file.digest === "string" ? file.digest.replace(/^sha256:/, "") : null,
+        date: r.published_at
+      };
+    });
+    return best;
   }
 
   function readCache() {
