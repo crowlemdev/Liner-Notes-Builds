@@ -288,6 +288,18 @@ html:not(.js) .spec { display: none; } /* without JavaScript the buttons go to t
   .sound { grid-template-columns: minmax(0, 1fr); gap: var(--space-8); }
   .sound-shot { max-width: 640px; }
 }
+/* Three platforms: three across on a wide page; two across below that, the odd one out across both */
+@media (min-width: 1101px) {
+  .platforms { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (min-width: 761px) and (max-width: 1100px) {
+  .platforms > .panel:last-child:nth-child(odd) { grid-column: 1 / -1; }
+}
+.panel code {
+  font: 500 12px/18px var(--font-mono);
+  overflow-wrap: anywhere;
+}
+
 @media (max-width: 760px) {
   .page { padding: var(--space-8) var(--space-4) 0; }
   .screen > img { width: 100%; }
