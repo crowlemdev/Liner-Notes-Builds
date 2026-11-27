@@ -3,9 +3,8 @@
   Finds the newest published Mac, Android and Linux builds in this
   repository's releases (tags mac-build-N, android-build-N and linux-build-N;
   drafts are skipped, and a prerelease is taken only for a platform with no
-  release yet) and points the download buttons at their files: Linux's .deb,
-  and its tarball for an install without admin rights. Every button downloads
-  a file. Without JavaScript,
+  release yet) and points the download buttons at their files (Linux's is its
+  .deb). Every button downloads a file. Without JavaScript,
   or if GitHub cannot be reached, each button keeps its link to a list of its
   own platform's builds; the page links to no other list of builds.
 */
@@ -19,8 +18,7 @@
   var PLATFORMS = {
     mac: { prefix: "mac-build-", asset: "Liner-Notes.zip" },
     android: { prefix: "android-build-", asset: "Liner-Notes.apk" },
-    linux: { prefix: "linux-build-", asset: /^liner-notes_[0-9.]+_amd64\.deb$/ },
-    "linux-tarball": { prefix: "linux-build-", asset: "Liner-Notes-linux-x86_64.tar.gz" }
+    linux: { prefix: "linux-build-", asset: /^liner-notes_[0-9.]+_amd64\.deb$/ }
   };
 
   function isAsset(name, asset) {
